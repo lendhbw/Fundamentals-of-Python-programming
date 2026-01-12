@@ -5,6 +5,8 @@
 # provided that the original copyright notice is retained.
 #
 # See LICENSE file in the project root for full license information.
+#
+# Modified by Lenn Fischer according to the given task.
 
 """
 Program that reads reservation details from a file
