@@ -131,14 +131,14 @@ def print_phone(reservation: list) -> None:
     print("Phone:", reservation_phone)
 
 def print_email(reservation: list) -> None:
-    """
-    Prints the bookers email address
+        """
+        Prints the bookers email address
 
-    Parameters:
-        reservation (lst): reservation -> columns separated by |
-    """
-    reservation_email = str(reservation[9])
-    print("Email:", reservation_email)
+        Parameters:
+            reservation (lst): reservation -> columns separated by |
+        """
+        reservation_email = str(reservation[9])
+        print("Email:", reservation_email)
 
 def main():
     """
