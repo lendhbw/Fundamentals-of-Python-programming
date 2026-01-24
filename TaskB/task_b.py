@@ -32,7 +32,7 @@ def print_booker(reservation: list) -> None:
     Prints the reservation number
 
     Parameters:
-     reservation (lst): reservation -> columns separated by |
+    reservation (lst): reservation -> columns separated by |
     """
     booker = str(reservation[1])
     print(f"Booker: {booker}")
@@ -42,7 +42,7 @@ def print_reservation_number(reservation: list) -> None:
     Prints the reservation number
 
     Parameters:
-     reservation (lst): reservation -> columns separated by |
+    reservation (lst): reservation -> columns separated by |
     """
     reservation_number = int(reservation[0])
     print(f"Reservation number: {reservation_number}")
@@ -52,7 +52,7 @@ def print_date(reservation: list) -> None:
     Prints the reservation date
 
     Parameters:
-     reservation (lst): reservation -> columns separated by |
+    reservation (lst): reservation -> columns separated by |
     """
     reservation_date = datetime.strptime(reservation[2], "%Y-%m-%d").date()
     reservation_date_finnish_format = reservation_date.strftime("%d.%m.%Y")
@@ -63,7 +63,7 @@ def print_start_time(reservation: list) -> None:
     Prints the reservation start time
 
     Parameters:
-     reservation (lst): reservation -> columns separated by |   
+    reservation (lst): reservation -> columns separated by |   
     """
     reservation_start_time = datetime.strptime(reservation[3], "%H:%M").time()
     reservation_time_finnish_format = reservation_start_time.strftime("%H.%M")
@@ -74,7 +74,7 @@ def print_hours(reservation: list) -> None:
     Prints the number of reserved hours
     
     Parameters:
-     reservation (lst): reservation -> columns separated by |   
+    reservation (lst): reservation -> columns separated by |   
     """
     reservation_number_of_hours = int(reservation[4])
     print("Number of hours:", reservation_number_of_hours)
