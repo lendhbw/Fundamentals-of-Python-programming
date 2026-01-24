@@ -29,16 +29,27 @@ def fetch_electricity_data(electricity_data_file: str) -> list[list]:
     electricity_data (list): Read and converted electricity data
     """
     electricity_data = []
-    with open(electricity_data_file, "r", encoding="utf-8") as f:
-        for line in f:
-            fields = line.split(";")
-            try:
-                # Skip header line
-                datetime.fromisoformat(fields[0])
-            except ValueError:
-                continue
-            electricity_data.append(convert_electricity_data(fields))
-    return electricity_data
+    
+    try:
+        with open(electricity_data_file, "r", encoding="utf-8") as f:
+            for line in f:
+                fields = line.split(";")
+                try:
+                    # Skip header line
+                    datetime.fromisoformat(fields[0])
+                except ValueError:
+                    continue
+                electricity_data.append(convert_electricity_data(fields))
+        return electricity_data
+    except FileNotFoundError:
+        print(f"Error: File '{electricity_data_file}' not found.")
+        return []
+    except PermissionError:
+        print(f"Error: Permission denied when trying to read '{electricity_data_file}'.")
+        return []
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return []
 
 
 def convert_electricity_data(electricity_data: list) -> list:
@@ -189,21 +200,21 @@ def calculate_daily_overview(electricity_data: list[list]) -> list[list]:
         daily_sums[d][1] += record[1]  # consumption phase 1 (Wh)
         daily_sums[d][2] += record[2]  # consumption phase 2 (Wh)
         daily_sums[d][3] += record[3]  # consumption phase 3 (Wh)
-        daily_sums[d][4] += record[4]  # production phase 1 (Wh)
-        daily_sums[d][5] += record[5]  # production phase 2 (Wh)
-        daily_sums[d][6] += record[6]  # production phase 3 (Wh)
+        daily_sums[d][4] += record[4]  # production  phase 1 (Wh)
+        daily_sums[d][5] += record[5]  # production  phase 2 (Wh)
+        daily_sums[d][6] += record[6]  # production  phase 3 (Wh)
 
     calculated_daily_data = []
     for d in sorted(daily_sums.keys()):
         ts, c1, c2, c3, p1, p2, p3 = daily_sums[d]
         calculated_daily_data.append([
             ts,
-            c1 / 1000,
-            c2 / 1000,
-            c3 / 1000,
-            p1 / 1000,
-            p2 / 1000,
-            p3 / 1000,
+            c1 / 1000, # consumption phase 1 (kWh)
+            c2 / 1000, # consumption phase 2 (kWh)
+            c3 / 1000, # consumption phase 3 (kWh)
+            p1 / 1000, # production  phase 1 (kWh)
+            p2 / 1000, # production  phase 2 (kWh)
+            p3 / 1000, # production  phase 3 (kWh)
         ])
 
     return calculated_daily_data
