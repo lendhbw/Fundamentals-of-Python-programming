@@ -71,6 +71,7 @@ def convert_electricity_data(electricity_data: list) -> list:
 ## Menu ##
 def show_main_menu() -> str:
     """Prints the main menu and returns the user selection as a string."""
+    print ("\n" + "=" * 40)
     print("Main Menu:")
     print("1. Create Daily Report for a Date Range")
     print("2. Create Monthly Report for one Month")
